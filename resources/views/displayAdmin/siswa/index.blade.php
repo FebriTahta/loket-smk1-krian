@@ -205,11 +205,17 @@
                         <div class="card" >
                             <div class="card">
                                 <div id="slider">
+                                    @if ($konten->count()==0)
+                                    <div class="text-center">
+                                        <h5 class="text-danger">TIDAK ADA GAMBAR</h5>
+                                    </div>  
+                                    @else
                                     <figure>
-                                          <img src="assets/images/11.jpg" style="max-height: 295px">
-                                          <img src="assets/images/12.jpg" style="max-height: 295px">
-                                          <img src="assets/images/13.jpg" style="max-height: 295px">
+                                        @foreach ($konten as $item)
+                                            <img src="{{ asset('gambar/'.$item->gambar) }}" style="max-height: 295px">
+                                        @endforeach
                                     </figure>
+                                    @endif
                                 </div>
                             </div>
                         </div>
