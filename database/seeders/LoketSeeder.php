@@ -14,8 +14,8 @@ class LoketSeeder extends Seeder
     public function run()
     {
         $data = array(
-            array( 'nama_loket' => 'Loket 1'),
-            array('nama_loket' => 'Loket 2'),
+            array( 'nama_loket' => 'Loket 1','user_id' => '1'),
+            array('nama_loket' => 'Loket 2','user_id' => '2'),
         );
         foreach ($data as $raw_data) {
             DB::table('lokets')->insert($raw_data);

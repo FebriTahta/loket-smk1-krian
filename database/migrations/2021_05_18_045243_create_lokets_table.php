@@ -15,6 +15,7 @@ class CreateLoketsTable extends Migration
     {
         Schema::create('lokets', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('user_id');
             $table->string('nama_loket')->nullabel();
             $table->timestamps();
         });
