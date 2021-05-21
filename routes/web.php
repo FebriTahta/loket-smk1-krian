@@ -3,6 +3,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\PrintController;
 use App\Http\Controllers\LoketController;
 use App\Http\Controllers\KontenController;
+use App\Http\Controllers\UcapanController;
 use App\Http\Controllers\DisplaySiswaController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,16 +32,19 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::group(['middleware' => ['auth', 'CheckRole:loket,loket2']], function () {
-//user
+
+    //user
 Route::get('/displayUser',[UserController::class,'index'])->name('display.user');
 Route::get('/getUser', [UserController::class, 'getUser'])->name('get.user');
 Route::post('/saveUser',[UserController::class, 'saveUser'])->name('save.user');
 Route::post('/deleteUser',[UserController::class, 'delete'])->name('del.user');
 Route::post('/updateUser',[UserController::class, 'update'])->name('update.user');
+
 //print
 Route::get('/displayPrint', [PrintController::class, 'index'])->name('display.print');
 Route::post('/displayprint/input', [PrintController::class, 'input1'])->name('print.1');
 Route::post('/displayprint/input2', [PrintController::class, 'input2'])->name('print.2');
+
 //admin loket
 Route::get('/displayLoket',[LoketController::class, 'index'])->name('display.loket');
 Route::get('/displayHistory', [LoketController::class, 'gethistory'])->name('history');
@@ -53,8 +57,10 @@ Route::post('/kelolaantrian3',[LoketController::class, 'updateloket3'])->name('u
 Route::post('/kelolaantrian4',[LoketController::class, 'updateloket4'])->name('update.antrian4');
 Route::post('/kelolaantrian5',[LoketController::class, 'updateloket5'])->name('update.antrian5');
 Route::post('/kelolaantrian6',[LoketController::class, 'updateloket6'])->name('update.antrian6');
+
 //display siswa
 Route::get('/displaySiswa',[DisplaySiswaController::class, 'index'])->name('display.siswa');
+
 //konten
 Route::get('/daftarKonten',[KontenController::class, 'index'])->name('daftar.konten');
 Route::post('/postKonten',[KontenController::class, 'store'])->name('post.konten');
@@ -62,4 +68,13 @@ Route::post('/postVideo',[KontenController::class, 'store2'])->name('post.video'
 Route::get('/getKonten',[KontenController::class, 'getkonten'])->name('get.konten');
 Route::get('/getVideo',[KontenController::class, 'getvideo'])->name('get.video');
 Route::post('/dellKonten',[KontenController::class, 'hapus'])->name('dell.konten');
+Route::post('/dellVideo',[KontenController::class, 'hapusvideo'])->name('dell.video');
+Route::post('/updateVideo',[KontenController::class, 'updatevideo'])->name('update.video');
+
+//ucapan
+Route::get('/daftarUcapan',[UcapanController::class, 'index'])->name('display.ucapan');
+Route::get('/getUcapan',[UcapanController::class, 'getucapan'])->name('get.ucapan');
+Route::post('/postUcapan',[UcapanController::class, 'postucapan'])->name('post.ucapan');
+Route::post('/dellUcapan',[UcapanController::class, 'hapusucapan'])->name('dell.ucapan');
+Route::post('/updateUcapan',[UcapanController::class, 'updateucapan'])->name('update.ucapan');
 });

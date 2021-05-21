@@ -163,9 +163,11 @@
                     <div class="card">
                         <!-- 16:9 aspect ratio -->
                         <div class="embed-responsive embed-responsive-16by9">
-                            <video class="col-xl-12 embed-responsive-item" controls loop autoplay>
+                            {{-- <video class="col-xl-12 embed-responsive-item" controls loop autoplay>
                                 <source src="{{ asset('assets/video/profile_vid.mp4') }}" type="video/mp4">
-                            </video>
+                            </video> --}}
+                            {{-- <iframe src="{{ $link }}" frameborder="0"></iframe> --}}
+                            {!! $link !!}
                         </div>
                     </div>
                     <div style="margin-top: 20px; padding: 2%">
@@ -216,6 +218,10 @@
                                     @if ($konten->count()==0)
                                     <div class="text-center">
                                         <h5 class="text-danger">TIDAK ADA GAMBAR</h5>
+                                    </div>  
+                                    @elseif($konten->count() < 3)
+                                    <div class="text-center">
+                                        <h5 class="text-danger">MINIMAL 3 DATA GAMBAR YANG DAPAT DITAMPILKAN</h5>
                                     </div>  
                                     @else
                                     <figure>

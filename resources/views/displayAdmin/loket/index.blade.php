@@ -48,8 +48,14 @@
                                 </div>
                             </div>
                             <div class="post-details p-2">
-                                <h6 class="mt-0"><a href="#" class="text-dark">Selamat Pagi Admin</a></h6>
-                                <p class="text-muted">Semoga hari ini menjadi hari yang hebat dan menyenangkan bagi anda</p>
+                                <h6 class="mt-0"><a href="#" class="text-dark">Selamat Pagi "{{ auth()->user()->username }}"</a></h6>
+                                <p class="text-muted">
+                                    @if ($ucapan !== null)
+                                        {!! $ucapan->kata !!}
+                                    @else
+                                        Semoga hari ini menjadi hari yang hebat dan menyenangkan bagi anda
+                                    @endif
+                                </p>
                                 {{-- <p class="mb-0">By <a href="#" class="text-primary">Andy Suryo</a></p> --}}
                             </div>
                         </div>
@@ -306,7 +312,7 @@
             var sebagai = document.getElementById('sebagai').value;
             if (sebagai=='loket') {
                 $('#datatable1').DataTable({
-                "pageLength": 6,
+                "pageLength": 5,
                 //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization
                 destroy: true,
                 processing: true,
@@ -336,7 +342,7 @@
                 });
             } else {
                 $('#datatable2').DataTable({
-                "pageLength": 6,
+                "pageLength": 5,
                 //karena memakai yajra dan template maka di destroy dulu biar ga dobel initialization
                 destroy: true,
                 processing: true,

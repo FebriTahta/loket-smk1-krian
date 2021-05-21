@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Konten;
 use App\Models\Video;
 use DataTables;
+use LaravelVideoEmbed;
 use Illuminate\Http\Request;
 
 class KontenController extends Controller
@@ -42,16 +43,17 @@ class KontenController extends Controller
             $data = Video::orderBy('id','desc');
                 return Datatables::of($data)
                         ->addIndexColumn()
-                        ->addColumn('video', function($row){
-                            $url=asset('video/'.$row->video); 
-                            $btn = '<img src="'.$url.'" class="rounded-circle" height="50px" width="50px">';
-                            return $btn;
-                        })
+                        // ->addColumn('video', function($row){
+                        //     $url=asset('video/'.$row->video); 
+                        //     $btn = '<img src="'.$url.'" class="rounded-circle" height="50px" width="50px">';
+                        //     return $btn;
+                        // })
                         ->addColumn('Actions', function($row){
                             $btn = '<button type="button" data-toggle="modal" data-target="#formuseritu" data-id="'.$row->id.'" data-id2="'.$row->name.'" class="btn btn-danger waves-effect waves-light "> <i class="fa fa-trash"></i> Hapus </button>';
+                            $btn = $btn. '<button type="button" data-toggle="modal" data-target="#formuserupvid" data-id="'.$row->id.'" data-video="'.$row->video.'" class="btn btn-warning waves-effect waves-light "> <i class="fa fa-pencil"></i> Update </button>';
                             return $btn;
                         })
-                        ->rawColumns(['Actions','img'])
+                        ->rawColumns(['Actions'])
                         ->make(true);
                 return datatables()->of($data)->make(true);
         }
@@ -103,5 +105,28 @@ class KontenController extends Controller
             $data,
             'success'=>'Konten Tersebut Berhasil Dihapus'
         ]);
+    }
+
+    public function updatevideo(Request $request)
+    {
+        $id = $request->id;
+        $data = Video::find($id)->update(['video'=>$request->video]);
+        return Response()->json([
+            $data,
+            'success'=>'Video Tersebut Berhasil diupdate'
+        ]);
+    }
+
+    public function hapusvideo(Request $request)
+    {
+        $id = $request->id;
+        if(request()->ajax())
+        {
+            $user  = Video::find($id)->delete();
+            return Response()->json([
+                $user,
+                'success'=>'Video Tersebut Berhasil dihapus'
+            ]);       
+        }
     }
 }

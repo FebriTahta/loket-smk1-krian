@@ -124,7 +124,9 @@
                                     </li>
                                     <li>
                                         <a href="{{ route('daftar.konten') }}">Konten</a>
-                                        
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('display.ucapan') }}">Ucapan</a>
                                     </li>
                                 </ul>
                             </li>

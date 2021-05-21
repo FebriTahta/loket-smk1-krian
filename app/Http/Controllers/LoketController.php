@@ -3,13 +3,15 @@
 namespace App\Http\Controllers;
 use App\Models\Antrian;
 use DataTables;
+use App\Models\Ucapan;
 use Illuminate\Http\Request;
 
 class LoketController extends Controller
 {
     public function index()
     {
-        return view('displayAdmin.loket.index');
+        $ucapan = Ucapan::inRandomOrder()->first();
+        return view('displayAdmin.loket.index',compact('ucapan'));
     }
 
     public function gethistory()
