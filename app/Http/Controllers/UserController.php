@@ -118,9 +118,9 @@ class UserController extends Controller
         $data   =   User::create(
             [
                 'name' => $request->name,
-                'username' => $request->role,
+                'username' => $request->name,
                 'role' => $request->role,
-                'password' => Hash::make($request->password),
+                'password' => bcrypt($request->password),
             ]);    
                  
             return Response()->json([
