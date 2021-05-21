@@ -45,7 +45,7 @@
                 <div class="col-xl-2">
                 </div>
                 <div class="col-xl-4" style="background: transparent">
-                    <form action="javascript:void(0)" id="print" method="POST">@csrf
+                    <form action="javascript:void(0)" id="print" method="POST" enctype="multipart/form-data">@csrf
                         {{csrf_field()}}
                         <input name="_token" type="hidden" id="_token" value="{{ csrf_token() }}"/>
                         <input type="hidden" name="antrian_ke" value="1">
@@ -59,7 +59,7 @@
                 </div>
                 
                 <div class="col-xl-4" style="background: transparent">
-                    <form action="javascript:void(0)" id="print2" method="POST">@csrf
+                    <form action="javascript:void(0)" id="print2" method="POST" enctype="multipart/form-data">@csrf
                         {{csrf_field()}}
                         <input name="_token" type="hidden" id="_token" value="{{ csrf_token() }}"/>                        
                         <input type="hidden" name="antrian_ke" value="1">
