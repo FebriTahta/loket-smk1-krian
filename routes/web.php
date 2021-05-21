@@ -34,8 +34,9 @@ Route::group(['middleware' => ['auth', 'CheckRole:loket,loket2']], function () {
 //user
 Route::get('/displayUser',[UserController::class,'index'])->name('display.user');
 Route::get('/getUser', [UserController::class, 'getUser'])->name('get.user');
-Route::post('/saveUser',[App\Http\Controllers\Auth\RegisterController::class, 'saveUser'])->name('save.user');
-Route::post('/delUser',[UserController::class, 'delete'])->name('del.user');
+Route::post('/saveUser',[UserController::class, 'saveUser'])->name('save.user');
+Route::post('/deleteUser',[UserController::class, 'delete'])->name('del.user');
+Route::post('/updateUser',[UserController::class, 'update'])->name('update.user');
 //print
 Route::get('/displayPrint', [PrintController::class, 'index'])->name('display.print');
 Route::post('/displayPrint/input', [PrintController::class, 'input'])->name('print.1');

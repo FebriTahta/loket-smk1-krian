@@ -67,7 +67,7 @@
                                                placeholder="Kode">
                                     </div>
                                     <div class="col-md-9">
-                                        <input name="user_id" type="hidden" class="form-control" type="text"
+                                        <input name="user_id" type="hidden" value="{{ auth()->user()->id }}" class="form-control" type="text"
                                                placeholder="Kode">
                                     </div>
                                 </div>

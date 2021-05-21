@@ -76,16 +76,17 @@ class RegisterController extends Controller
 
     protected function saveUser(Request $request)
     {
-        $user   =   User::updateOrCreate(
+        $data   =   User::create(
             [
                 'name' => $request->name,
                 'username' => $request->role,
                 'role' => $request->role,
+                'email' => $data['email'],
                 'password' => Hash::make($request->password),
             ]);    
                  
             return Response()->json([
-                $user,
+                $data,
                 'success'=>'User Baru Berhasil disimpan'
             ]);
     }

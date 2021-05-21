@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use DataTables;
+use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
     /**
@@ -110,5 +111,21 @@ class UserController extends Controller
                 'danger'=>'User Tersebut Berhasil dihapus'
             ]);       
         }
+    }
+
+    protected function saveUser(Request $request)
+    {
+        $data   =   User::create(
+            [
+                'name' => $request->name,
+                'username' => $request->role,
+                'role' => $request->role,
+                'password' => Hash::make($request->password),
+            ]);    
+                 
+            return Response()->json([
+                $data,
+                'success'=>'User Baru Berhasil disimpan'
+            ]);
     }
 }
