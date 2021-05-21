@@ -88,7 +88,7 @@ class PrintController extends Controller
             ->max('antrian_ke');
 
             $dataantrian=empty($dataantrianbaru)?0:$dataantrianbaru;
-            
+             
 
             $data_loket= DB::table('lokets')->select("nama_loket")
             ->where('id',$loketid)->first();
