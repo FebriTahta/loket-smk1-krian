@@ -15,7 +15,7 @@ class PrintController extends Controller
         return view('displayAdmin.print.index');
     }
 
-    public function input2(Request $request){
+    public function input1(Request $request){
         $loketid= $request->loket_id;
         $user_id= $request->user_id;
         $antrianke = $request->antrian_ke;
@@ -79,7 +79,7 @@ class PrintController extends Controller
             }catch(\Exception $e){
                     dd($e);
            }
-        }else if($loketid==2 && $user_id==2){
+        }else if($loketid==1 && $user_id==1){
               
             $dataantrianbaru= DB::table('antrians')
             ->where('loket_id',$loketid)
@@ -140,7 +140,7 @@ class PrintController extends Controller
         }
     }
 
-    public function input(Request $request){
+    public function input2(Request $request){
         $loketid= $request->loket_id;
         $user_id= $request->user_id;
         $antrianke = $request->antrian_ke;

@@ -39,7 +39,7 @@ Route::post('/deleteUser',[UserController::class, 'delete'])->name('del.user');
 Route::post('/updateUser',[UserController::class, 'update'])->name('update.user');
 //print
 Route::get('/displayPrint', [PrintController::class, 'index'])->name('display.print');
-Route::post('/displayPrint/input', [PrintController::class, 'input'])->name('print.1');
+Route::post('/displayPrint/input', [PrintController::class, 'input1'])->name('print.1');
 Route::post('/displayPrint/input2', [PrintController::class, 'input2'])->name('print.2');
 //admin loket
 Route::get('/displayLoket',[LoketController::class, 'index'])->name('display.loket');

@@ -91,7 +91,7 @@
                 var formData = new FormData(this);
                 $.ajax({
                 type:'POST',
-                url: 'displayPrint/input2',
+                url: "{{ route('print.1') }}", 
                 data: formData,
                 cache:false, 
                 contentType: false,
@@ -113,7 +113,7 @@
                 var formData = new FormData(this);
                 $.ajax({
                 type:'POST',
-                url: 'displayPrint/input',
+                url: "{{ route('print.2') }}",
                 data: formData,
                 cache:false,
                 contentType: false,
