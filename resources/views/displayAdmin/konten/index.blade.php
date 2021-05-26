@@ -22,7 +22,18 @@
 @section('content')
 <div class="wrapper bg">
     <div class="container-fluid">
-    
+    <div class="text-white">
+        @foreach ($p as $item)
+            {{ $item->name }}
+            @foreach ($item->penilaian as $items)
+                <ul>{{ $items->factor }}
+                    @foreach ($items->nilai as $itemx)
+                        <li>{{ $itemx->nilai }}</li>
+                    @endforeach
+                </ul>
+            @endforeach
+        @endforeach
+    </div>
     <!-- Page-Title -->
     <div class="row">
         <div class="col-sm-12">
@@ -41,6 +52,10 @@
     <div class="row">
         <div class="col-xl-6 col-md-6">
             <div class="card" style="box-shadow: 10px;">
+                <form action="/import" method="post" enctype="multipart/form-data">@csrf
+                    <input type="file" name="file">
+                    <button type="submit" class="btn btn-priamry">import</button>
+                </form>
                 <div class="card-body">
                     <button type="button" data-toggle="modal" data-target="#formuser2" class="btn btn-primary waves-effect waves-light "> <i class="fa fa-plus"></i> Tambah Gambar </button>
                 </div>

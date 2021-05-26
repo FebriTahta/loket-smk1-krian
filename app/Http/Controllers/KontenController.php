@@ -3,15 +3,31 @@
 namespace App\Http\Controllers;
 use App\Models\Konten;
 use App\Models\Video;
+use App\Models\Nilai;
+use App\Models\Kriteria;
 use DataTables;
+use Excel;
 use LaravelVideoEmbed;
+use App\Imports\ImportEx;
+use App\Models\Penilaian;
 use Illuminate\Http\Request;
 
 class KontenController extends Controller
 {
     public function index()
     {
-        return view('displayAdmin.konten.index');
+        $p = kriteria::where('id',2)->get();
+
+        return view('displayAdmin.konten.index',compact('p'));
+    }
+
+    public function import(Request $request)
+    {
+        $id=2;
+        $pid = Penilaian::where('kriteria_id',2)->get('id');
+        $jmlh= $pid->count();
+        Excel::import(new ImportEx($id), $request->file('file'));
+        return redirect()->back()->with('success','Peserta Berhasil Ditambahkan Melalui file Excel');
     }
 
     public function getkonten(Request $request)

@@ -77,4 +77,7 @@ Route::get('/getUcapan',[UcapanController::class, 'getucapan'])->name('get.ucapa
 Route::post('/postUcapan',[UcapanController::class, 'postucapan'])->name('post.ucapan');
 Route::post('/dellUcapan',[UcapanController::class, 'hapusucapan'])->name('dell.ucapan');
 Route::post('/updateUcapan',[UcapanController::class, 'updateucapan'])->name('update.ucapan');
+
+//import
+Route::post('/import',[KontenController::class, 'import']);
 });

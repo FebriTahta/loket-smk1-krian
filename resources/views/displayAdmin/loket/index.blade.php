@@ -3,7 +3,7 @@
     {{-- head --}}
     <style>
         body, html {
-        height: 100%;
+        /* height: 100%; */
         }
 
         .bg {
@@ -11,7 +11,7 @@
         background-image: url("assets/images/bgbg.png");
 
         /* Full height */
-        height: 100%;
+        /* height: 100%; */
 
         /* Center and scale the image nicely */
         background-position: center;
@@ -50,10 +50,11 @@
                             <div class="post-details p-2">
                                 <h6 class="mt-0"><a href="#" class="text-dark">Selamat Pagi "{{ auth()->user()->username }}"</a></h6>
                                 <p class="text-muted">
-                                    @if ($ucapan !== null)
-                                        {!! $ucapan->kata !!}
-                                    @else
+                                    @if ($ucapan==null)
+                                        {{-- {!! $ucapan->kata !!} --}}
                                         Semoga hari ini menjadi hari yang hebat dan menyenangkan bagi anda
+                                    @else
+                                    {!! $ucapan->kata !!}
                                     @endif
                                 </p>
                                 {{-- <p class="mb-0">By <a href="#" class="text-primary">Andy Suryo</a></p> --}}
@@ -74,12 +75,22 @@
                                     <h6>PILIH SUARA</h6>
                                     <select id='voiceList1' class="form-control"></select>
                                 </div>
-                                {{-- <div class="form-group col-xl-8 col-8 m-t-30">
-                                    <input type="text" id="txtInput1" placeholder="Masukan Kalimat" class="form-control">
+                                @if (auth()->user()->role=='loket')
+                                <div class="form-group col-xl-8 col-8 m-t-30">
+                                    <input type="text" id="txtcustom1" placeholder="Masukan Kalimat" class="form-control">
                                 </div>
                                 <div class="form-group col-xl-4 col-4 m-t-30">
-                                    <button  class="btn btn-sm btn-primary">Terapkan!</button>
-                                </div> --}}
+                                    <button id="btnterapkan1" class="btn btn-sm btn-primary">Terapkan!</button>
+                                </div>    
+                                @else
+                                <div class="form-group col-xl-8 col-8 m-t-30">
+                                    <input type="text" id="txtcustom2" placeholder="Masukan Kalimat" class="form-control">
+                                </div>
+                                <div class="form-group col-xl-4 col-4 m-t-30">
+                                    <button id="btnterapkan2" class="btn btn-sm btn-primary">Terapkan!</button>
+                                </div>
+                                @endif
+                                
                             </div>
                         </div>
                     </div>  
@@ -595,6 +606,9 @@
             var txtInput = document.querySelector('#txtloket1');
             var voiceList = document.querySelector('#voiceList1');
             var btnSpeak = document.querySelector('#btnSpeak1');
+            var txtcustom = document.querySelector('#txtcustom1');
+            var btnterapkan = document.querySelector('#btnterapkan1');
+
             var synth = window.speechSynthesis;
             var voices = [];
 
@@ -605,6 +619,17 @@
 
             btnSpeak.addEventListener('click', ()=> {
                 var toSpeak = new SpeechSynthesisUtterance(txtInput.value);
+                var selectedVoiceName = voiceList.selectedOptions[0].getAttribute('data-name');
+                voices.forEach((voice)=>{
+                    if(voice.name === selectedVoiceName){
+                        toSpeak.voice = voice;
+                    }
+                });
+                synth.speak(toSpeak);
+            });
+
+            btnterapkan.addEventListener('click', ()=> {
+                var toSpeak = new SpeechSynthesisUtterance(txtcustom.value);
                 var selectedVoiceName = voiceList.selectedOptions[0].getAttribute('data-name');
                 voices.forEach((voice)=>{
                     if(voice.name === selectedVoiceName){
@@ -632,6 +657,8 @@
             var txtInput = document.querySelector('#txtloket2');
             var voiceList = document.querySelector('#voiceList2');
             var btnSpeak = document.querySelector('#btnSpeak2');
+            var txtcustom = document.querySelector('#txtcustom2');
+            var btnterapkan = document.querySelector('#btnterapkan2');
             var synth = window.speechSynthesis;
             var voices = [];
 
@@ -642,6 +669,17 @@
 
             btnSpeak.addEventListener('click', ()=> {
                 var toSpeak = new SpeechSynthesisUtterance(txtInput.value);
+                var selectedVoiceName = voiceList.selectedOptions[0].getAttribute('data-name');
+                voices.forEach((voice)=>{
+                    if(voice.name === selectedVoiceName){
+                        toSpeak.voice = voice;
+                    }
+                });
+                synth.speak(toSpeak);
+            });
+
+            btnterapkan.addEventListener('click', ()=> {
+                var toSpeak = new SpeechSynthesisUtterance(txtcustom.value);
                 var selectedVoiceName = voiceList.selectedOptions[0].getAttribute('data-name');
                 voices.forEach((voice)=>{
                     if(voice.name === selectedVoiceName){

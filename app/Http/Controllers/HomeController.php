@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Ucapan;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +23,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('displayAdmin.loket.index');
+        $ucapan = Ucapan::inRandomOrder()->first();
+        return view('displayAdmin.loket.index',compact('ucapan'));
     }
 }
